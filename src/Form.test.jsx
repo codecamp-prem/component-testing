@@ -88,9 +88,11 @@ describe("Form Component", () => {
 
         expect(onSubmit).not.toHaveBeenCalledOnce()
 
+        await user.clear(emailInput)
         await user.type(emailInput, "valid_email@gmail.com")
         expect(emailErrorMsg).not.toBeInTheDocument()
-        await user.type(passwordInput, "Valid_PassWord_123456Password")
+        await user.clear(passwordInput)
+        await user.type(passwordInput, "Valid_PassWord_123456Psswd")
         expect(passwordErrorMsg).not.toBeInTheDocument()
     })
 })
