@@ -67,4 +67,29 @@ describe("Form Component", () => {
 
         expect(onSubmit).not.toHaveBeenCalledOnce()        
     })
+
+    it("should update the error message while typing: after the 1st submit", async () => {
+        const onSubmit = vi.fn()
+        const user = userEvent.setup()
+        
+        render(<Form onSubmit={onSubmit} />)
+
+        const emailInput = screen.getByLabelText("Email")
+        const passwordInput = screen.getByLabelText("Password")
+        await user.type(emailInput, "test@yahoo.com") // failing email value
+        await user.type(passwordInput, "123Pd") // failing password value
+        await user.click(screen.getByText("Submit"))
+
+        const emailErrorMsg = screen.queryByTestId("email-error-msg")
+        expect(emailErrorMsg).toBeInTheDocument()
+        const passwordErrorMsg = screen.queryByTestId("password-error-msg")
+        expect(passwordErrorMsg).toBeInTheDocument()
+
+        expect(onSubmit).not.toHaveBeenCalledOnce()
+
+        await user.type(emailInput, "valid_email@gmail.com")
+        expect(emailErrorMsg).not.toBeInTheDocument()
+        await user.type(passwordInput, "Valid_PassWord_123456Password")
+        expect(passwordErrorMsg).not.toBeInTheDocument()
+    })
 })
