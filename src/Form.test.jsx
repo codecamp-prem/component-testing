@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from "vitest"
-import { StateForm as Form } from "./StateForm"
 import { render, screen } from "@testing-library/react"
 import userEvent from '@testing-library/user-event'
+//import { StateForm as Form } from "./StateForm"
+import { RefForm as Form } from "./RefForm"
 
 describe("Form Component", () => {
     it("should call onSubmit when the form is valid with the correct data", async () => {
