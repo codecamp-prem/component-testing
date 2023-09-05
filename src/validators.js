@@ -5,8 +5,8 @@ export function checkEmail(email) {
     errors.push("Required")
   }
 
-  if (!email.endsWith("@webdevsimplified.com")) {
-    errors.push("Must end with @webdevsimplified.com")
+  if (!email.endsWith("@gmail.com")) {
+    errors.push("Must end with @gmail.com")
   }
 
   return errors
