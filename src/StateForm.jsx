@@ -40,7 +40,7 @@ export function StateForm({ onSubmit }) {
           onChange={e => setEmail(e.target.value)}
         />
         {emailErrors.length > 0 && (
-          <div className="msg">{emailErrors.join(", ")}</div>
+          <div data-testid="email-error-msg" className="msg">{emailErrors.join(", ")}</div>
         )}
       </div>
       <div className={`form-group ${passwordErrors.length > 0 ? "error" : ""}`}>
@@ -55,7 +55,7 @@ export function StateForm({ onSubmit }) {
           onChange={e => setPassword(e.target.value)}
         />
         {passwordErrors.length > 0 && (
-          <div className="msg">{passwordErrors.join(", ")}</div>
+          <div data-testid="password-error-msg" className="msg">{passwordErrors.join(", ")}</div>
         )}
       </div>
       <button className="btn" type="submit">
